@@ -12,7 +12,7 @@ speed = 1
 pygame.init()
 screen = pygame.display.set_mode((size))
 pygame.display.set_caption("Dauntae's first game")
-screen.fill("green")
+screen.fill((67, 88, 69))
 clock = pygame.time.Clock()
 running = True
 
@@ -20,32 +20,34 @@ pygame.display.update()
 
 
 # load images
-car = pygame.image.load("car2.png")
+car = pygame.image.load("car.png")
 car_loc = car.get_rect()
 car_loc.center = right_lane, height * 0.8
 
 # load enemy vehicle
-car2 = pygame.image.load("car1.png")
-car2_loc = car2.get_rect()
-car2_loc.center = left_lane, height * 0.2
+oil = pygame.image.load("oil.png")
+oil_loc = oil.get_rect()
+oil_loc.center = left_lane, height * 0.2
 
 counter = 0
 
 # game loop
 while running:
     counter += 1
-    if counter == 1024:
-        speed += 0.25
+    if counter == 5000:
+        speed += 0.15
         counter = 0
         print("Level up", speed)
-    car2_loc[1] += speed
-    if car2_loc[1] > height:
-        if random.randint(0, 1) == 0:
-            car2_loc.center = right_lane, -200
-        else:
-            car2_loc.center = left_lane, -200
 
-    if car_loc[0] == car2_loc[0] and car2_loc[1] > car_loc[1] - 250:
+    oil_loc[1] += speed
+
+    if oil_loc[1] > height:
+        if random.randint(0, 1) == 0:
+            oil_loc.center = right_lane, -200
+        else:
+            oil_loc.center = left_lane, -200
+
+    if car_loc[0] == oil_loc[0] and oil_loc[1] > car_loc[1] - 250:
         print("GAME OVER! YOU LOST!")
         break
 
@@ -78,7 +80,7 @@ while running:
         (width / 2 + road_w / 2 - roadmark_w * 3, 0, roadmark_w, height),
     )
     screen.blit(car, car_loc)
-    screen.blit(car2, car2_loc)
+    screen.blit(oil, oil_loc)
     pygame.display.update()
 
     # RENDER YOUR GAME HERE
@@ -91,7 +93,7 @@ while running:
 pygame.quit()
 
 
-# link for car 1
+# link for car
 # <a href="https://www.flaticon.com/free-icons/car" title="car icons">Car icons created by Freepik - Flaticon</a>
-# lik for car 2
-# <a href="https://www.flaticon.com/free-icons/racing-car" title="racing car icons">Racing car icons created by Freepik - Flaticon</a>
+# link for oil spill
+# <a href="https://www.flaticon.com/free-icons/oil-spill" title="oil spill icons">Oil spill icons created by Khoirul Huda - Flaticon</a>

@@ -7,7 +7,7 @@ road_w = int(width / 1.6)
 roadmark_w = int(width / 80)
 right_lane = width / 2 + road_w / 4
 left_lane = width / 2 - road_w / 4
-speed = 1
+speed = 5
 
 pygame.init()
 screen = pygame.display.set_mode((size))
@@ -35,7 +35,7 @@ counter = 0
 while running:
     counter += 1
     if counter == 5000:
-        speed += 0.15
+        speed += 0.50
         counter = 0
         print("Level up", speed)
 
@@ -58,8 +58,10 @@ while running:
         if event.type == KEYDOWN:
             if event.key in [K_a, K_LEFT]:
                 car_loc = car_loc.move([-int(road_w / 2), 0])
+
             if event.key in [K_d, K_RIGHT]:
                 car_loc = car_loc.move([int(road_w / 2), 0])
+
     # road
     pygame.draw.rect(screen, (50, 50, 50), (width / 2 - road_w / 2, 0, road_w, height))
 
